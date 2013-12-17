@@ -86,7 +86,6 @@
         }
       });
       
-      
       // start click context on toggle element
       $element.on('mousedown touchstart', function(event) {
         if (!clickContext) {
