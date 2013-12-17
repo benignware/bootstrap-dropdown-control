@@ -35,8 +35,6 @@ Markup
 </div>
 ```
 
-
-
 Options
 -------
 <table>

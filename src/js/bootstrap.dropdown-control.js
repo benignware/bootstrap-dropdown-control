@@ -75,10 +75,9 @@
       // init key events
       $element.on('keydown.bs.dropdown.data-api', DropdownControl.prototype.keydown);
       
-      
       // show on focus
       $element.on('focus', function(event) {
-        if (options.showOnFocus && !isOpen($element)) {
+        if (!clickContext && options.showOnFocus && !isOpen($element)) {
           event.preventDefault();
           DropdownControl.prototype.toggle.apply(this, arguments);
           if (options.focusInput) {
@@ -105,17 +104,16 @@
       
       $element.on('click', function(event) {
         
-          if (isOpen($element)) {
-            if (!('ontouchstart' in window)) {
-              clearMenu($element);
-            }
-          } else {
-            DropdownControl.prototype.toggle.apply(this, arguments);
-            if (options.focusInput) {
-              focusInput(menu); 
-            }
+        if (isOpen($element)) {
+          if (!('ontouchstart' in window)) {
+            clearMenu($element);
           }
-        
+        } else {
+          DropdownControl.prototype.toggle.apply(this, arguments);
+          if (options.focusInput) {
+            focusInput(menu); 
+          }
+        }
         
         event.stopImmediatePropagation();
         event.preventDefault();
