@@ -100,9 +100,8 @@
         }
       });
       
-      
       $element.on('click', function(event) {
-        
+        console.log("CLICK", isOpen($element));
         if (isOpen($element)) {
           if (!('ontouchstart' in window)) {
             clearMenu($element);
@@ -121,8 +120,9 @@
       
       // end click context on parent click
       parent.on('click', function(event) {
+        console.log("PARENT CLICK");
         clickContext = false;
-        //event.stopImmediatePropagation();
+        event.stopImmediatePropagation();
       });
 
       
@@ -138,11 +138,9 @@
                 clearMenu(element);
               }
             }
-            
           }, 0);
         }
       });
-      
       
       // close on click outside
       $(document)
@@ -152,6 +150,9 @@
             (!parent.is(event.target) && !parent.has(event.target).length)) {
             clearMenu($element);
           }
+        })
+        .on('click.bs.dropdown.data-api', function(event) {
+          console.log("EVENT: CLICK: ", event);
         });
       
       // call the original constructor
