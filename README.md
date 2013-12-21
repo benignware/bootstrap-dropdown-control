@@ -48,3 +48,8 @@ Options
     <td>showOnFocus</td><td>automatically opens the dropdown on focus</td><td>false</td>
   </tr>
 </table>
+
+Example Demo
+------------
+See it in action here:
+http://rawgithub.com/benignware/bootstrap-dropdown-control/master/examples/index.html

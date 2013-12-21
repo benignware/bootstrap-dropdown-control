@@ -65,6 +65,9 @@
   // create a new constructor
   function DropdownControl(element, options) {
   
+       // call the original constructor
+      //_super.Constructor.apply( this, arguments );
+      
       // do custom constructor stuff here
       var $element = $(element);
       
@@ -101,7 +104,6 @@
       });
       
       $element.on('click', function(event) {
-        console.log("CLICK", isOpen($element));
         if (isOpen($element)) {
           if (!('ontouchstart' in window)) {
             clearMenu($element);
@@ -120,7 +122,6 @@
       
       // end click context on parent click
       parent.on('click', function(event) {
-        console.log("PARENT CLICK");
         clickContext = false;
         event.stopImmediatePropagation();
       });
@@ -134,17 +135,20 @@
         if (!clickContext) {
           window.setTimeout(function() {
             if (isOpen($element)) {
+              
               if (!menu.has(document.activeElement).length) {
                 clearMenu(element);
               }
             }
+            
           }, 0);
         }
       });
       
+      
       // close on click outside
       $(document)
-        .on('click', function(event) {
+        .on('mousedown touchstart', function(event) {
           var parent = getParent($element);
           if (isOpen($element) && 
             (!parent.is(event.target) && !parent.has(event.target).length)) {
@@ -152,11 +156,9 @@
           }
         })
         .on('click.bs.dropdown.data-api', function(event) {
-          console.log("EVENT: CLICK: ", event);
         });
       
-      // call the original constructor
-      _super.Constructor.apply( this, arguments );
+     
       
   };
 
