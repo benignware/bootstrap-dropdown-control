@@ -51,5 +51,4 @@ Options
 
 Example Demo
 ------------
-See it in action here:
 http://rawgithub.com/benignware/bootstrap-dropdown-control/master/examples/index.html
